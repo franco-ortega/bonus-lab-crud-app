@@ -76,4 +76,33 @@ describe('bonus-lab-crud-app-back-end routes', () => {
     expect(res.body.length).toEqual(results.length);
     results.forEach(result => expect(res.body).toContainEqual(result));
   });
+
+  it('updates a mouse via PUT', async() => {
+    const mouse = await Mouse.insert(
+      {
+        name: 'Tuvo',
+        furColor: 'spotted',
+        tailLength: 1
+      }
+    );
+
+    const res = await request(app)
+      .put(`/api/v1/mice/${mouse.id}`)
+      .send(
+        {
+          name: 'Tuvo',
+          furColor: 'spotted',
+          tailLength: 6
+        }
+      );
+
+    expect(res.body).toEqual(
+      {
+        id: mouse.id,
+        name: 'Tuvo',
+        furColor: 'spotted',
+        tailLength: 6
+      }
+    );
+  });
 });
