@@ -105,4 +105,19 @@ describe('bonus-lab-crud-app-back-end routes', () => {
       }
     );
   });
+
+  it('deletes a mouse via DELETE', async() => {
+    const mouse = await Mouse.insert(
+      { 
+        name: 'Cassia',
+        furColor: 'tan',
+        tailLength: 2
+      }
+    );
+
+    const res = await request(app)
+      .delete(`/api/v1/mice/${mouse.id}`);
+
+    expect(res.body).toEqual(mouse);
+  });
 });
