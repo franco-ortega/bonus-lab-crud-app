@@ -17,15 +17,15 @@ describe('bonus-lab-crud-app-back-end routes', () => {
       .post('/api/v1/mice')
       .send({
         name: 'Squeakers',
-        fur_color: 'brown',
-        tail_length: 4
+        furColor: 'brown',
+        tailLength: 4
       });
 
     expect(res.body).toEqual({
       id: expect.any(String),
       name: 'Squeakers',
-      fur_color: 'brown',
-      tail_length: 4
+      furColor: 'brown',
+      tailLength: 4
     });
   });
 });
